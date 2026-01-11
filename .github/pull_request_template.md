@@ -16,8 +16,8 @@
 
 ## Checklist
 
-- [ ] Code builds successfully (`npm run build`)
-- [ ] Linting passes (`npm run lint`)
+- [ ] Code builds successfully (`yarn build`)
+- [ ] Linting passes (`yarn lint`)
 - [ ] `dist/` folder is committed and up to date
 - [ ] README updated if needed
 - [ ] Breaking changes are documented
