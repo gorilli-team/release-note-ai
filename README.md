@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: Generate Release Note
         id: release-note
-        uses: yourusername/release-note-action@v1
+        uses: gorilli-team/release-note-ai@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           generate_summary: false
@@ -54,7 +54,7 @@ jobs:
     steps:
       - name: Generate Release Note
         id: release-note
-        uses: yourusername/release-note-action@v1
+        uses: gorilli-team/release-note-ai@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           generate_summary: true
@@ -83,7 +83,7 @@ jobs:
     steps:
       - name: Generate Release Note
         id: release-note
-        uses: yourusername/release-note-action@v1
+        uses: gorilli-team/release-note-ai@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           generate_summary: true

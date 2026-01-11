@@ -1,6 +1,6 @@
 name: 'Release Note Generator'
 description: 'Extract and generate structured release notes from merged pull requests'
-author: 'Your Name'
+author: 'Gorilli Team'
 
 branding:
   icon: 'file-text'

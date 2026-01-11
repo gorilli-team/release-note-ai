@@ -178,7 +178,7 @@ Functions for:
 3. Create a GitHub release from the tag
 4. Users can reference the action:
    ```yaml
-   uses: yourusername/release-note-action@v1.0.0
+   uses: gorilli-team/release-note-ai@v1.0.0
    ```
 
 ## Common Issues

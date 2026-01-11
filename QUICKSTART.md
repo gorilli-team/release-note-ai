@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Generate Release Note
         id: release-note
-        uses: yourusername/release-note-action@v1
+        uses: gorilli-team/release-note-ai@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           generate_summary: false
@@ -94,7 +94,7 @@ To generate user-friendly summaries with AI:
 
 ```yaml
 - name: Generate Release Note
-  uses: yourusername/release-note-action@v1
+  uses: gorilli-team/release-note-ai@v1
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     generate_summary: true
