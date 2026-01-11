@@ -1,0 +1,35 @@
+name: Generate Release Notes
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  release-notes:
+    # Only run when PR is merged to main
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate Release Note
+        id: release-note
+        uses: yourusername/release-note-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          generate_summary: false
+
+      - name: Display Generated Release Note
+        run: |
+          echo "Release Note Generated:"
+          echo '${{ steps.release-note.outputs.release_note }}' | jq .
+
+      - name: Save to file
+        run: |
+          mkdir -p release-notes
+          echo '${{ steps.release-note.outputs.release_note }}' > release-notes/pr-${{ github.event.pull_request.number }}.json
+
+      - name: Upload as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-note-pr-${{ github.event.pull_request.number }}
+          path: release-notes/

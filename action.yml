@@ -1,0 +1,32 @@
+name: 'Release Note Generator'
+description: 'Extract and generate structured release notes from merged pull requests'
+author: 'Your Name'
+
+branding:
+  icon: 'file-text'
+  color: 'blue'
+
+inputs:
+  github_token:
+    description: 'GitHub token for API access (usually secrets.GITHUB_TOKEN)'
+    required: true
+  generate_summary:
+    description: 'Whether to generate AI-powered summary (title + bullet points)'
+    required: false
+    default: 'false'
+  model:
+    description: 'AI model to use for summarization (only used if generate_summary is true)'
+    required: false
+    default: ''
+  anthropic_api_key:
+    description: 'Anthropic API key (required only if generate_summary is true)'
+    required: false
+
+outputs:
+  release_note:
+    description: 'JSON object containing the structured release note data'
+    value: ${{ steps.generate.outputs.release_note }}
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

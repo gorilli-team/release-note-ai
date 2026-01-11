@@ -1,0 +1,51 @@
+name: Generate AI-Powered Release Notes
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  release-notes:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate Release Note with AI Summary
+        id: release-note
+        uses: yourusername/release-note-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          generate_summary: true
+          model: claude-3-5-sonnet-20241022
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Display Generated Release Note
+        run: |
+          echo "Release Note Generated:"
+          echo '${{ steps.release-note.outputs.release_note }}' | jq .
+
+      - name: Post to Company Backend
+        run: |
+          curl -X POST ${{ secrets.BACKEND_URL }}/api/release-notes \
+            -H "Authorization: Bearer ${{ secrets.API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '${{ steps.release-note.outputs.release_note }}'
+
+      - name: Create GitHub Release Draft
+        if: contains(github.event.pull_request.labels.*.name, 'release')
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.event.pull_request.number }}
+          release_name: Release ${{ github.event.pull_request.number }}
+          body: |
+            ${{ fromJson(steps.release-note.outputs.release_note).title }}
+
+            ${{ fromJson(steps.release-note.outputs.release_note).description }}
+
+            ## Changes
+            ${{ join(fromJson(steps.release-note.outputs.release_note).changes, '
+            ') }}
+          draft: true
+          prerelease: false

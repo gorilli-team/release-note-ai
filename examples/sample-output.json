@@ -1,0 +1,31 @@
+{
+  "title": "Improved user authentication with OAuth 2.0 support",
+  "description": "Users can now log in using their Google or GitHub accounts for a faster, more secure experience",
+  "changes": [
+    "Added OAuth 2.0 login options for Google and GitHub",
+    "Streamlined the authentication flow to reduce login time by 60%",
+    "Enhanced security with industry-standard authentication protocols"
+  ],
+  "tags": [
+    "feature",
+    "security"
+  ],
+  "pr": {
+    "number": 142,
+    "url": "https://github.com/owner/repo/pull/142",
+    "authors": [
+      "developer1",
+      "developer2"
+    ],
+    "mergedAt": "2024-01-15T14:30:22Z"
+  },
+  "raw": {
+    "title": "Add OAuth 2.0 authentication support",
+    "body": "## What was done\n\n- Implemented OAuth 2.0 using passport.js\n- Added Google and GitHub providers\n- Updated session management\n\n## Why\n\nTo improve security and user experience by allowing users to authenticate with their existing accounts.\n\n## User Impact\n\nUsers will be able to log in using their Google or GitHub accounts instead of creating new credentials.\n\n## Technical Details\n\n- Added passport.js and provider strategies\n- Updated /auth routes\n- Modified user model to support OAuth tokens",
+    "labels": [
+      "feature",
+      "enhancement",
+      "security"
+    ]
+  }
+}
