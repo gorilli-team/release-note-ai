@@ -199,18 +199,18 @@ Unrecognized labels are preserved as-is.
 ### Prerequisites
 
 - Node.js 20+
-- npm or yarn
+- Yarn
 
 ### Setup
 
 ```bash
-npm install
+yarn install
 ```
 
 ### Build
 
 ```bash
-npm run build
+yarn build
 ```
 
 This compiles TypeScript and bundles the action using `@vercel/ncc`.

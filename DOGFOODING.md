@@ -110,7 +110,7 @@ Let's say you want to add a new `include_commits` option:
 ```bash
 git checkout -b feature/include-commits
 # Make changes to src/
-npm run build
+yarn build
 git add .
 git commit -m "Add include_commits option"
 git push origin feature/include-commits

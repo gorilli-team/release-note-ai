@@ -151,7 +151,7 @@ When you make updates:
 ### Build out of sync
 If you make changes to src files:
 ```bash
-npm run build
+yarn build
 git add dist/
 git commit -m "Update build artifacts"
 git push

@@ -7,14 +7,14 @@ Thank you for your interest in contributing! This document provides guidelines f
 1. Fork and clone the repository
 2. Install dependencies:
    ```bash
-   npm install
+   yarn install
    ```
 
 3. Make your changes in the `src/` directory
 
 4. Build the action:
    ```bash
-   npm run build
+   yarn build
    ```
 
 5. Test your changes locally using [act](https://github.com/nektos/act)
@@ -22,16 +22,16 @@ Thank you for your interest in contributing! This document provides guidelines f
 ## Code Style
 
 - This project uses TypeScript with strict type checking
-- Run `npm run lint` to check for linting issues
-- Run `npm run format` to format code with Prettier
+- Run `yarn lint` to check for linting issues
+- Run `yarn format` to format code with Prettier
 - Follow existing patterns for consistency
 
 ## Pull Request Process
 
 1. Create a new branch from `main`
 2. Make your changes with clear, descriptive commit messages
-3. Ensure the build passes: `npm run build`
-4. Ensure linting passes: `npm run lint`
+3. Ensure the build passes: `yarn build`
+4. Ensure linting passes: `yarn lint`
 5. Update documentation if needed (README.md, code comments)
 6. Submit a pull request with:
    - Clear description of the changes
@@ -49,7 +49,7 @@ Since this is a GitHub Action:
 ## Commit the Build
 
 This action requires the compiled `dist/index.js` to be committed:
-- Always run `npm run build` before committing
+- Always run `yarn build` before committing
 - Commit the updated `dist/` folder with your changes
 - The CI workflow will verify the build is up to date
 

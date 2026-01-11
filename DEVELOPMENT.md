@@ -39,7 +39,7 @@ release-note-action/
 The action uses `@vercel/ncc` to compile TypeScript and bundle all dependencies into a single `dist/index.js` file.
 
 ```bash
-npm run build
+yarn build
 ```
 
 This creates:
@@ -54,19 +54,19 @@ This creates:
 ### Setup
 
 ```bash
-npm install
+yarn install
 ```
 
 ### Linting
 
 ```bash
-npm run lint
+yarn lint
 ```
 
 ### Formatting
 
 ```bash
-npm run format
+yarn format
 ```
 
 ### Type Checking
@@ -187,7 +187,7 @@ Functions for:
 
 If CI fails with "Build artifacts are out of sync":
 ```bash
-npm run build
+yarn build
 git add dist/
 git commit -m "Update build artifacts"
 ```
@@ -205,7 +205,7 @@ When testing, be aware of GitHub API rate limits. Use a personal access token fo
 
 ## Best Practices
 
-1. **Always build before committing** - Run `npm run build` and commit `dist/`
+1. **Always build before committing** - Run `yarn build` and commit `dist/`
 2. **Test with real PRs** - Manual testing is important for GitHub Actions
 3. **Handle missing data gracefully** - PRs may have empty bodies or unusual formats
 4. **Preserve raw data** - Always include original PR data in output
