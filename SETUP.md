@@ -63,48 +63,34 @@ See the [README](https://github.com/gorilli-team/release-note-ai#readme) for com
 
 5. Click "Publish release"
 
-### 3. Test the Action
+### 3. Configure Dogfooding (Optional but Recommended)
 
-Create a test workflow in your repository:
+This repository uses itself to generate release notes (dogfooding). The workflow at `.github/workflows/release-note.yml` is already set up.
 
-```bash
-mkdir -p .github/workflows
-```
+To enable AI summaries for dogfooding:
 
-Create `.github/workflows/test-release-notes.yml`:
+1. Get an Anthropic API key from https://console.anthropic.com/
+2. Add it to repository secrets:
+   - Go to https://github.com/gorilli-team/release-note-ai/settings/secrets/actions
+   - Click "New repository secret"
+   - Name: `ANTHROPIC_API_KEY`
+   - Value: Your API key
+3. The workflow will now generate AI-powered summaries for all merged PRs
 
-```yaml
-name: Test Release Notes
-on:
-  pull_request:
-    types: [closed]
+See [DOGFOODING.md](DOGFOODING.md) for complete details on how the action uses itself.
 
-jobs:
-  test-release-notes:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generate Release Note
-        id: release-note
-        uses: gorilli-team/release-note-ai@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          generate_summary: false
+### 4. Test the Action
 
-      - name: Display Output
-        run: |
-          echo "Release Note Generated:"
-          echo '${{ steps.release-note.outputs.release_note }}' | jq .
-```
+The dogfooding workflow will test the action on every merged PR. You can also create test PRs to verify behavior before releasing.
 
-### 4. Update Repository Settings
+### 5. Update Repository Settings
 
 1. Go to repository settings: https://github.com/gorilli-team/release-note-ai/settings
 2. Add a description: "Generic GitHub Action for extracting structured release notes from merged pull requests"
 3. Add topics: `github-actions`, `release-notes`, `changelog`, `automation`, `pull-requests`
 4. Update the website URL if you have one
 
-### 5. Enable GitHub Actions (if needed)
+### 6. Enable GitHub Actions (if needed)
 
 Ensure GitHub Actions are enabled:
 1. Go to Settings → Actions → General

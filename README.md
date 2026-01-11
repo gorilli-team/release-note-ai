@@ -2,6 +2,8 @@
 
 A generic, reusable GitHub Action that extracts structured release notes from merged pull requests. This action parses PR content, normalizes labels, and optionally generates AI-powered summaries suitable for end users.
 
+> **Dogfooded:** This repository uses itself to generate release notes. See [DOGFOODING.md](DOGFOODING.md) for details.
+
 ## Features
 
 - Extracts structured data from merged PRs (title, body, labels, authors, timestamps)
@@ -244,6 +246,16 @@ src/
 4. **No External Dependencies**: Only uses official GitHub Actions and Anthropic APIs
 5. **Output Preservation**: Always includes raw PR data alongside processed content
 
+## Dogfooding
+
+This repository uses `gorilli-team/release-note-ai` to generate release notes for its own PRs. When you merge a PR to `main`, the action automatically:
+
+1. Generates a structured release note with AI summary
+2. Posts a comment on the PR with the generated note
+3. Saves the release note as a GitHub artifact
+
+This ensures the action is continuously tested on real-world usage. See [DOGFOODING.md](DOGFOODING.md) for complete details on how we use the action on itself.
+
 ## Contributing
 
 Contributions are welcome! Please:
@@ -252,6 +264,8 @@ Contributions are welcome! Please:
 2. Create a feature branch
 3. Make your changes with tests
 4. Submit a pull request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [DEVELOPMENT.md](DEVELOPMENT.md) for detailed guidelines.
 
 ## License
 
